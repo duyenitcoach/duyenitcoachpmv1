@@ -1,0 +1,53 @@
+@using Manager.WebApp.Models
+
+@model Manager.WebApp.Models.WorkerIndexModel
+
+
+<h5>Danh sách người lao động</h5>
+<div class="text-muted">Tên người dưới 30 tuổi màu đỏ</div>
+
+<div class="bg-white p-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Họ</th>
+                <th>Tên</th>
+                <th>Tuổi</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Workers != null && Model.Workers.Count > 0)
+            {
+                foreach (var nld in Model.Workers)
+                {
+                    string red = string.Empty;
+                    if (nld.Age < 30)
+                    {
+                        red = "text-success";
+                    }
+
+                    <tr>
+                        <td class="@red">@nld.FirstName</td>
+                        <td>@nld.LastName</td>
+                        <td>@nld.Age</td>
+                        <td>@nld.Phone</td>
+                        <td>@nld.Email</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">Không tìm thấy d</td>                   
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+
+<style>
+
+</style>
